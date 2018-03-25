@@ -112,8 +112,8 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 
 		// Menu item under Settings
 		add_options_page(
-			'Starter Plugin',
-			'Starter Plugin',
+			'YASP',
+			'YASP',
 			self::SETTINGS_CAPABILITY,
 			self::SETTINGS_PAGE_SLUG,
 			array( $this, 'render_settings_page')

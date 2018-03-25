@@ -20,7 +20,7 @@ final class ST_Core {
 	private static $instance = null;
 
 	/**
-	 * Starter Plugin version
+	 * YASP version
 	 *
 	 * @var string
 	 */
@@ -36,7 +36,7 @@ final class ST_Core {
 		$this->includes();
 		$this->init_hooks();
 
-		do_action( 'starter_plugin_loaded' );
+		do_action( 'st_loaded' );
 	}
 
 	/**
@@ -53,13 +53,13 @@ final class ST_Core {
 	 */
 	public function init() {
 		// Before init action
-		do_action( 'starter_plugin_init_before' );
+		do_action( 'st_init_before' );
 
 		// Set up localization
 		$this->load_plugin_textdomain();
 
 		// Init action
-		do_action( 'starter_plugin_init' );
+		do_action( 'st_init' );
 	}
 
 	/**

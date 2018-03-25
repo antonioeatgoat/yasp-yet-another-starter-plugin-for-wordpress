@@ -16,29 +16,13 @@ efficiently.
 
 ## Getting Started
 
-Here's the folders structure and the primary files:
-
-```
-+-- _assets                             // The assets files
-|   +-- _css                                // The CSS files 
-|   +-- _js                                 // The JS files
-|   +-- _scss                               // The SCSS files
-+-- _includes                           // All the other files
-|   +-- _admin                              // The admin files
-|   |   +-- _settings                           // The settings page classes
-|   |   +-- _views                              // The views rendered on admin side
-|   |   +-- class-st-admin-settings.php         // The core class of the admin side. It mostly manage settings options
-|   +-- _classes                            // The non-admin classes of your plugin
-|   +-- helpers.php                         // The helper functions
-+-- _languages                          // The language files
-+-- class-st-core.php                   // The core class of your plugin
-+-- starter-plugin.php                  // The primary file of your plugin, it includes and init everything else.
-```
-### Rename everything
-
 It's assumed that you will rename many parts of the plugin, such as name, slug, language context, files name, etc.
 
-Follow these steps in order to replace all the strings properly.
+You can use the online [YASP Generator](http://www.wpstarterplugin.com) to generate your renamed package in just
+seconds.  
+
+If for any reason you prefer generate manually your package, then follow these steps in order to replace all the strings
+ properly.
 When you perform the search-and-replace, search for the strings in the whole project (also outside `src/`), and keep the 
 match case active.
 
@@ -57,6 +41,24 @@ If you did everything correctly, now you should have your project fully renamed 
 **NOTE:** It's important that you keep the same pattern when you rename strings, to be sure that all inclusion will
 continue to work. It's mostly true about classes names
 
+### Folders Structure and primary files
+
+```
++-- _assets                             // The assets files
+|   +-- _css                                // The CSS files 
+|   +-- _js                                 // The JS files
+|   +-- _scss                               // The SCSS files
++-- _includes                           // All the other files
+|   +-- _admin                              // The admin files
+|   |   +-- _settings                           // The settings page classes
+|   |   +-- _views                              // The views rendered on admin side
+|   |   +-- class-st-admin-settings.php         // The core class of the admin side. It mostly manage settings options
+|   +-- _classes                            // The non-admin classes of your plugin
+|   +-- helpers.php                         // The helper functions
++-- _languages                          // The language files
++-- class-st-core.php                   // The core class of your plugin
++-- starter-plugin.php                  // The primary file of your plugin, it includes and init everything else.
+```
 
 ## Development
 
@@ -86,6 +88,7 @@ Specifically:
 when needed
 - **Helpers functions:** All the helpers functions are in the file `includes/helpers.php`
 
+The loading of all the files is handled by the class `ST_Core`, specifically by its method `includes()`.
 
 ## Plugin options
 
