@@ -3,10 +3,10 @@
 defined( 'ABSPATH' ) || exit;
 
 // Get the settings page to display
-$settings_page = ST_Admin_Settings::get_settings_page();
+$settings_page = SP_Admin_Settings::get_settings_page();
 
 // Get tabs for the settings page
-$tabs = apply_filters( 'st_settings_tabs', array() );
+$tabs = apply_filters( 'sp_settings_tabs', array() );
 
 // Get the current tab
 $current_tab = $settings_page->get_id();
@@ -22,7 +22,7 @@ $current_tab = $settings_page->get_id();
 			foreach ( $tabs as $slug => $label ) {
 				$tab_active_class = ( $current_tab === $slug || $current_tab === null && $c ++ == 0 ? 'nav-tab-active' : '' );
 
-				echo '<a href="' . esc_html( admin_url( 'admin.php?page=' . esc_attr( ST_Admin_Settings::SETTINGS_PAGE_SLUG ) . '&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . $tab_active_class . '">' . esc_html( $label ) . '</a>';
+				echo '<a href="' . esc_html( admin_url( 'admin.php?page=' . esc_attr( SP_Admin_Settings::SETTINGS_PAGE_SLUG ) . '&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . $tab_active_class . '">' . esc_html( $label ) . '</a>';
 			}
 
 			?>
