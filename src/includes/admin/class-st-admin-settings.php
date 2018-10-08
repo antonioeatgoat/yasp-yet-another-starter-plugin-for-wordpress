@@ -46,12 +46,12 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	protected function __construct() {
 
 		// This class is instanced on the front end side too, in order to retrieve also there the plugin data saved in the DB
-	    if( ! is_admin() ) {
-	        return;
-        }
+		if ( ! is_admin() ) {
+			return;
+		}
 
-		add_action( 'admin_menu', array( $this, 'create_menu_entries') );
-		add_action( 'admin_init', array( $this, 'register_settings') );
+		add_action( 'admin_menu', array( $this, 'create_menu_entries' ) );
+		add_action( 'admin_init', array( $this, 'register_settings' ) );
 
 	}
 
@@ -60,8 +60,9 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 */
 	protected function init_settings_pages() {
 
-		if( !is_null(self::$settings_pages) )
+		if ( ! is_null( self::$settings_pages ) ) {
 			return;
+		}
 
 		// Include all the files needed for the settings pages
 		include ST_ADMIN_PATH . '/class-st-admin-settings-page-interface.php';
@@ -84,22 +85,28 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 */
 	public function register_settings() {
 
-		foreach( self::$settings_pages as $settings_page ) {
-			foreach( $settings_page->get_settings() as $setting ) {
-				if( isset( $setting['id'] ) && $setting['id'] || 'checkboxgroup' == $setting['type']) {
-
-
-					if( 'checkboxgroup' != $setting['type'] ) {
-						register_setting( 'st_settings_group_' . $settings_page->get_id(), self::OPTION_NAME_PREFIX . $setting['id'] );
-					} else {
-
-						// If the current setting is a checkboxgroup, then register all its options
-						foreach( $setting['options'] as $checkbox_setting ) {
-							register_setting( 'st_settings_group_' . $settings_page->get_id(), self::OPTION_NAME_PREFIX . $checkbox_setting['id'] );
-						}
-					}
-
+		foreach ( self::$settings_pages as $settings_page ) {
+			foreach ( $settings_page->get_settings() as $setting ) {
+				if ( empty( $setting['id'] ) && 'checkboxgroup' !== $setting['type'] ) {
+					continue;
 				}
+
+				if ( 'checkboxgroup' != $setting['type'] ) {
+					register_setting(
+						'st_settings_group_' . $settings_page->get_id(),
+						self::OPTION_NAME_PREFIX . $setting['id']
+					);
+				} else {
+
+					// If the current setting is a checkboxgroup, then register all its options
+					foreach ( $setting['options'] as $checkbox_setting ) {
+						register_setting(
+							'st_settings_group_' . $settings_page->get_id(),
+							self::OPTION_NAME_PREFIX . $checkbox_setting['id']
+						);
+					}
+				}
+
 			}
 		}
 
@@ -116,7 +123,7 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 			'YASP',
 			self::SETTINGS_CAPABILITY,
 			self::SETTINGS_PAGE_SLUG,
-			array( $this, 'render_settings_page')
+			array( $this, 'render_settings_page' )
 		);
 
 	}
@@ -126,7 +133,7 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 */
 	public function render_settings_page() {
 
-		if ( !current_user_can( self::SETTINGS_CAPABILITY ) )  {
+		if ( ! current_user_can( self::SETTINGS_CAPABILITY ) ) {
 			wp_die( __( 'You do not have sufficient permissions to access this page.', 'starter-plugin' ) );
 		}
 
@@ -141,8 +148,9 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 */
 	public static function get_settings_pages() {
 
-		if( is_null( self::$settings_pages ) )
+		if ( is_null( self::$settings_pages ) ) {
 			self::init_settings_pages();
+		}
 
 		return apply_filters( 'st_get_settings_pages', self::$settings_pages );
 	}
@@ -154,21 +162,22 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 *
 	 * @return ST_Admin_Settings_Page|null
 	 */
-	public static function get_settings_page( $id = null) {
+	public static function get_settings_page( $id = null ) {
 
 		// If the id isn't specified, try to detect the current tab to display
-		if( is_null( $id ) ) {
-			if( !empty( $_GET['tab'] ) ) {
+		if ( is_null( $id ) ) {
+			if ( ! empty( $_GET['tab'] ) ) {
 				$id = sanitize_title( $_GET['tab'] );
 			} else {
 				$default_settings_page = ST_Admin_Settings::get_default_settings_page();
-				$id = $default_settings_page->get_id();
+				$id                    = $default_settings_page->get_id();
 			}
 		}
 
-		foreach( self::$settings_pages as $settings_page ) {
-			if( $settings_page->get_id() === $id )
+		foreach ( self::$settings_pages as $settings_page ) {
+			if ( $settings_page->get_id() === $id ) {
 				return $settings_page;
+			}
 		}
 
 		return null;
@@ -180,7 +189,7 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 *
 	 * @return ST_Admin_Settings_Page
 	 */
-	public static function get_default_settings_page( ) {
+	public static function get_default_settings_page() {
 
 		return apply_filters( 'st_get_default_settings_page', self::$settings_pages[0] );
 
@@ -196,15 +205,15 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 */
 	public static function get_option( $option_name, $default = '' ) {
 
-	    // If the option name doesn't include the prefix yet, add it
-	    if( substr( $option_name, 0, strlen( self::OPTION_NAME_PREFIX )) !== self::OPTION_NAME_PREFIX ) {
-		    $option_name = self::OPTION_NAME_PREFIX . $option_name;
-        }
+		// If the option name doesn't include the prefix yet, add it
+		if ( substr( $option_name, 0, strlen( self::OPTION_NAME_PREFIX ) ) !== self::OPTION_NAME_PREFIX ) {
+			$option_name = self::OPTION_NAME_PREFIX . $option_name;
+		}
 
-        // Get the option from the database
+		// Get the option from the database
 		$option_value = get_option( $option_name, null );
 
-	    // If the option exists, return it, otherwise return the default value
+		// If the option exists, return it, otherwise return the default value
 		return ( null === $option_value ) ? $default : $option_value;
 	}
 
@@ -214,8 +223,9 @@ class ST_Admin_Settings implements ST_Singleton_Interface {
 	 * @return ST_Admin_Settings|null
 	 */
 	public static function instance() {
-		if(is_null(self::$instance))
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new static();
+		}
 
 		return self::$instance;
 	}

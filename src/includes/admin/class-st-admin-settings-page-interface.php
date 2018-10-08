@@ -8,8 +8,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * @author Antonio Mangiacapra
  */
-interface ST_Admin_Settings_Page_Interface
-{
+interface ST_Admin_Settings_Page_Interface {
 	/**
 	 * Returns an array containing all the settings of the current settings page
 	 *

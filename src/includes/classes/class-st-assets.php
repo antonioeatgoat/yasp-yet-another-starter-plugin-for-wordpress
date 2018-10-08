@@ -22,7 +22,7 @@ class ST_Assets implements ST_Singleton_Interface {
 	 */
 	protected function __construct() {
 
-		add_action( 'wp_enqueue_scripts',    array( $this, 'enqueue_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
 	}
 
@@ -32,8 +32,9 @@ class ST_Assets implements ST_Singleton_Interface {
 	 * @return ST_Assets|null
 	 */
 	public static function instance() {
-		if(is_null(self::$instance))
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new static();
+		}
 
 		return self::$instance;
 	}
@@ -44,18 +45,18 @@ class ST_Assets implements ST_Singleton_Interface {
 	 */
 	public function enqueue_assets() {
 
-		$min_suffix = ( !defined('SCRIPT_DEBUG') || SCRIPT_DEBUG === false ) ? '.min' : '';
+		$min_suffix = ( ! defined( 'SCRIPT_DEBUG' ) || SCRIPT_DEBUG === false ) ? '.min' : '';
 
 		// Styles
 		wp_enqueue_style(
 			'starter-plugin',
-			starter_plugin()->plugin_url() .  "/assets/css/starter-plugin{$min_suffix}.css"
+			starter_plugin()->plugin_url() . "/assets/css/starter-plugin{$min_suffix}.css"
 		);
 
 		// Scripts
 		wp_enqueue_script(
 			'starter-plugin',
-			starter_plugin()->plugin_url() .  "/assets/js/starter-plugin{$min_suffix}.js",
+			starter_plugin()->plugin_url() . "/assets/js/starter-plugin{$min_suffix}.js",
 			array( 'jquery' ),
 			ST_VERSION,
 			true

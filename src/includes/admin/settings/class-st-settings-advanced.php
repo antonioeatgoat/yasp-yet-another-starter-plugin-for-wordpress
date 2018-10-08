@@ -30,17 +30,17 @@ class ST_Settings_Advanced extends ST_Admin_Settings_Page {
 		$settings = array(
 
 			array(
-				'type'     => 'title',
-				'title'    => __( 'Advanced Settings', 'starter-plugin' ),
-				'desc'     => __( 'Add any other kind of settings you want here and create how many tabs you want.', 'starter-plugin' ),
+				'type'  => 'title',
+				'title' => __( 'Advanced Settings', 'starter-plugin' ),
+				'desc'  => __( 'Add any other kind of settings you want here and create how many tabs you want.', 'starter-plugin' ),
 			),
 			array(
-				'id'            => 'advanced_text',
-				'type'          => 'text',
-				'title'         => __( 'Advanced text', 'starter-plugin' ),
-				'desc'          => __( 'This is an optional description.', 'starter-plugin' ),
-				'placeholder'   => __( 'Something cool here.', 'starter-plugin' ),
-				'default'       => '',
+				'id'          => 'advanced_text',
+				'type'        => 'text',
+				'title'       => __( 'Advanced text', 'starter-plugin' ),
+				'desc'        => __( 'This is an optional description.', 'starter-plugin' ),
+				'placeholder' => __( 'Something cool here.', 'starter-plugin' ),
+				'default'     => '',
 			),
 
 		);

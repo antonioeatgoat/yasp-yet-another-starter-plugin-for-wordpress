@@ -40,7 +40,7 @@ final class ST_Core {
 	}
 
 	/**
-	 * Hook all the actions and the filters		 *
+	 * Hook all the actions and the filters         *
 	 */
 	protected function init_hooks() {
 
@@ -68,22 +68,22 @@ final class ST_Core {
 	protected function define_constants() {
 
 		// ST_PLUGIN_BASENAME
-		if ( ! defined('ST_PLUGIN_BASENAME' ) ) {
+		if ( ! defined( 'ST_PLUGIN_BASENAME' ) ) {
 			define( 'ST_PLUGIN_BASENAME', plugin_basename( ST_PLUGIN_FILE ) );
 		}
 
 		// ST_CLASSES_PATH
-		if ( ! defined('ST_CLASSES_PATH' ) ) {
+		if ( ! defined( 'ST_CLASSES_PATH' ) ) {
 			define( 'ST_CLASSES_PATH', $this->plugin_path() . '/includes/classes/' );
 		}
 
 		// ST_ADMIN_PATH
-		if ( ! defined('ST_ADMIN_PATH' ) ) {
+		if ( ! defined( 'ST_ADMIN_PATH' ) ) {
 			define( 'ST_ADMIN_PATH', $this->plugin_path() . '/includes/admin' );
 		}
 
 		// ST_VERSION
-		if ( ! defined('ST_VERSION' ) ) {
+		if ( ! defined( 'ST_VERSION' ) ) {
 			define( 'ST_VERSION', $this->version );
 		}
 
@@ -114,20 +114,20 @@ final class ST_Core {
 	public function includes() {
 
 		// Autoload classes that will be used
-		spl_autoload_register( array($this, 'autoload') );
+		spl_autoload_register( array( $this, 'autoload' ) );
 
 		// Include any other file here (helpers, template files, ecc)
 		$files_paths = apply_filters( 'st_files_paths_to_include', array(
 			$this->plugin_path() . '/includes/helpers.php'
 		) );
 
-		foreach( $files_paths as $path ) {
+		foreach ( $files_paths as $path ) {
 			require_once $path;
 		}
 
 		// Include classes that need to be instanced
 		$classes_paths = array(
-			'ST_Assets' => ST_CLASSES_PATH . '/class-st-assets.php',
+			'ST_Assets'         => ST_CLASSES_PATH . '/class-st-assets.php',
 
 			// Include this also if it is an admin class, so that options can be used on front end
 			'ST_Admin_Settings' => ST_ADMIN_PATH . '/class-st-admin-settings.php',
@@ -135,9 +135,7 @@ final class ST_Core {
 
 		// Include classes that need to be instanced only in admin side
 		if ( is_admin() ) {
-			$classes_paths = array_merge( $classes_paths, array(
-
-			));
+			$classes_paths = array_merge( $classes_paths, array() );
 		}
 
 		/**
@@ -147,7 +145,7 @@ final class ST_Core {
 		 */
 		$classes_paths = apply_filters( 'st_classes_paths_to_init', $classes_paths );
 
-		foreach( $classes_paths as $class => $path ) {
+		foreach ( $classes_paths as $class => $path ) {
 			require_once $path;
 
 			/**
@@ -162,32 +160,36 @@ final class ST_Core {
 
 	/**
 	 * Autoload the classes of the plugin.
-	 * At the current moment it autoload only the classes present in the ST_CLASSES_PATH folder, but not in ST_ADMIN_PATH
+	 * At the current moment it autoload only the classes present in the ST_CLASSES_PATH folder, but not in
+	 * ST_ADMIN_PATH
 	 *
-	 * @param  string $class
+	 * @param  string      $class
 	 * @param  string|null $directory_path
 	 */
 	public function autoload( $class, $directory_path = null ) {
 
-		if ( is_null( $directory_path ) )
+		if ( is_null( $directory_path ) ) {
 			$directory_path = ST_CLASSES_PATH;
+		}
 
 		foreach ( scandir( $directory_path ) as $directory_item ) {
 
 			// If the current directory item is a directory too && it isn't assumed to be hidden, re-run the function recursively
-			if ( is_dir( $directory_path . $directory_item ) && substr( $directory_item, 0, 1 ) !== '.')
+			if ( is_dir( $directory_path . $directory_item ) && substr( $directory_item, 0, 1 ) !== '.' ) {
 				$this->autoload( $class, $directory_path . $directory_item );
+			}
 
 			// If the current directory item is a php file file
-			if ( preg_match( "/.php$/i" , $directory_item ) ) {
+			if ( preg_match( "/.php$/i", $directory_item ) ) {
 
 				$file_name = strtolower( str_replace( '_', '-', $class ) );
 
 				$file_path = $directory_path . "/class-{$file_name}.php";
 
 				// If exists, include the required file
-				if( file_exists( $file_path ) )
+				if ( file_exists( $file_path ) ) {
 					require_once $file_path;
+				}
 
 			}
 
@@ -219,8 +221,9 @@ final class ST_Core {
 	 * @return ST_Core
 	 */
 	public static function instance() {
-		if(is_null(self::$instance))
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new static();
+		}
 
 		return self::$instance;
 	}

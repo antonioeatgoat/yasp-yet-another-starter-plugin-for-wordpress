@@ -14,30 +14,30 @@ $current_tab = $settings_page->get_id();
 ?>
 
 <div class="wrap">
-    <?php if( count( $tabs ) > 1 ):?>
-    <nav class="nav-tab-wrapper">
-        <?php
+	<?php if ( count( $tabs ) > 1 ): ?>
+		<nav class="nav-tab-wrapper">
+			<?php
 
-        $c = 0;
-        foreach ( $tabs as $slug => $label ) {
-            $tab_active_class = ( $current_tab === $slug || $current_tab === null && $c++ == 0 ? 'nav-tab-active' : '' );
+			$c = 0;
+			foreach ( $tabs as $slug => $label ) {
+				$tab_active_class = ( $current_tab === $slug || $current_tab === null && $c ++ == 0 ? 'nav-tab-active' : '' );
 
-            echo '<a href="' . esc_html( admin_url( 'admin.php?page=' . esc_attr( ST_Admin_Settings::SETTINGS_PAGE_SLUG ). '&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . $tab_active_class . '">' . esc_html( $label ) . '</a>';
-        }
+				echo '<a href="' . esc_html( admin_url( 'admin.php?page=' . esc_attr( ST_Admin_Settings::SETTINGS_PAGE_SLUG ) . '&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . $tab_active_class . '">' . esc_html( $label ) . '</a>';
+			}
 
-        ?>
-    </nav>
+			?>
+		</nav>
 	<?php endif; ?>
 
-    <form method="post" id="st-settings-form" action="options.php" enctype="multipart/form-data">
+	<form method="post" id="st-settings-form" action="options.php" enctype="multipart/form-data">
 
-	    <?php
+		<?php
 
-	    $settings_page->render_fields();
+		$settings_page->render_fields();
 
-	    submit_button();
+		submit_button();
 
-	    ?>
+		?>
 
-    </form>
+	</form>
 </div>

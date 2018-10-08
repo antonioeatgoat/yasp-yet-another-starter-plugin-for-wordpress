@@ -11,7 +11,6 @@ defined( 'ABSPATH' ) || exit;
  *
  * @author Antonio Mangiacapra
  */
-interface ST_Singleton_Interface
-{
+interface ST_Singleton_Interface {
 	public static function instance();
 }

@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  */
 function st_get_option( $option_name, $default = '' ) {
 
-	$value = ST_Admin_Settings::get_option( $option_name, $default);
+	$value = ST_Admin_Settings::get_option( $option_name, $default );
 
 	return apply_filters( 'st_get_option', $value, $option_name, $default );
 
