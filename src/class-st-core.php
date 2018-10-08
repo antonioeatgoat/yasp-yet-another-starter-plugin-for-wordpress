@@ -40,7 +40,7 @@ final class ST_Core {
 	}
 
 	/**
-	 * Hook all the actions and the filters         *
+	 * Hook all the actions and the filters
 	 */
 	protected function init_hooks() {
 
