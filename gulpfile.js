@@ -15,7 +15,7 @@ gulp.task('default', ['main-css', 'main-js']);
 // Styles
 gulp.task('main-css', function () {
 
-    var notMinified = gulp.src( [ scssPath + '/starter-plugin.scss' ] )
+    var notMinified = gulp.src( [ scssPath + '/yasp.scss' ] )
     .pipe(sass({
             outputStyle: 'nested',
             precison: 3,
@@ -33,7 +33,7 @@ gulp.task('main-css', function () {
 
 // Scripts
 gulp.task('main-js', function () {
-    return gulp.src( [ jsPath + '/starter-plugin.js' ] )
+    return gulp.src( [ jsPath + '/yasp.js' ] )
         .pipe(uglify())
         .pipe(rename({
             suffix: '.min'
@@ -45,5 +45,5 @@ gulp.task('main-js', function () {
 // Watch
 gulp.task('watch', function () {
     gulp.watch( scssPath + '/*.scss', ['main-css'] );
-    gulp.watch( jsPath + '/starter-plugin.js', ['main-js'] );
+    gulp.watch( jsPath + '/yasp.js', ['main-js'] );
 });
