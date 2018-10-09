@@ -15,12 +15,12 @@ class SP_Assets implements SP_Singleton_Interface {
 	/**
 	 * @var null|SP_Assets The unique instance of the class
 	 */
-	protected static $instance = null;
+	private static $instance = null;
 
 	/**
 	 * SP_Assets constructor
 	 */
-	protected function __construct() {
+	private function __construct() {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 

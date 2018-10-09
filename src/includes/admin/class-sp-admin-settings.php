@@ -18,12 +18,12 @@ class SP_Admin_Settings implements SP_Singleton_Interface {
 	/**
 	 * @var null|SP_Admin_Settings The unique instance of the class
 	 */
-	protected static $instance = null;
+	private static $instance = null;
 
 	/**
 	 * @var SP_Admin_Settings_Page[] The array containing the instances of all the settings page objects
 	 */
-	protected static $settings_pages = null;
+	private static $settings_pages = null;
 
 	/**
 	 * @var string The capability needed to manage the settings of the plugin
@@ -43,7 +43,7 @@ class SP_Admin_Settings implements SP_Singleton_Interface {
 	/**
 	 * SP_Admin_Settings constructor
 	 */
-	protected function __construct() {
+	private function __construct() {
 
 		// This class is instanced on the front end side too, in order to retrieve also there the plugin data saved in the DB
 		if ( ! is_admin() ) {
@@ -58,7 +58,7 @@ class SP_Admin_Settings implements SP_Singleton_Interface {
 	/**
 	 * Include all the settings pages existent (and other related classes needed) and automatically instance them
 	 */
-	protected static function init_settings_pages() {
+	private static function init_settings_pages() {
 
 		if ( ! is_null( self::$settings_pages ) ) {
 			return;
