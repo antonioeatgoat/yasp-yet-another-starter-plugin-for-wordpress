@@ -30,7 +30,7 @@ final class SP_Core {
 	/**
 	 * SP_Core constructor
 	 */
-	protected function __construct() {
+	private function __construct() {
 
 		$this->define_constants();
 		$this->includes();
@@ -42,7 +42,7 @@ final class SP_Core {
 	/**
 	 * Hook all the actions and the filters
 	 */
-	protected function init_hooks() {
+	private function init_hooks() {
 
 		add_action( 'init', array( $this, 'init' ) );
 
@@ -65,7 +65,7 @@ final class SP_Core {
 	/**
 	 * Define the constants of the plugin
 	 */
-	protected function define_constants() {
+	private function define_constants() {
 
 		// SP_PLUGIN_BASENAME
 		if ( ! defined( 'SP_PLUGIN_BASENAME' ) ) {
@@ -97,7 +97,7 @@ final class SP_Core {
 	 *      - WP_LANG_DIR/plugins/yasp-LOCALE.mo
 	 *      - wp-content/plugins/yasp/languages/yasp-LOCALE.mo
 	 */
-	protected function load_plugin_textdomain() {
+	private function load_plugin_textdomain() {
 		$locale = ( is_admin() && function_exists( 'get_user_locale' ) ) ? get_user_locale() : get_locale();
 		$locale = apply_filters( 'plugin_locale', $locale, 'yasp' );
 
