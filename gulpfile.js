@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename');
 
-const assetsPath = './src/assets',
+const assetsPath = './assets',
     cssPath = assetsPath + '/css',
     scssPath = assetsPath + '/scss',
     jsPath = assetsPath + '/js';

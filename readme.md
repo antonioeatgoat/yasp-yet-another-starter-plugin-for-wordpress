@@ -23,7 +23,7 @@ seconds.
 
 If for any reason you prefer generate manually your package, then follow these steps in order to replace all the strings
  properly.
-When you perform the search-and-replace, search for the strings in the whole project (also outside `src/`), and keep the 
+When you perform the search-and-replace, search for the strings in the whole project, and keep the 
 match case active.
 
  1. Search and replace all the **"SP_"**. 
