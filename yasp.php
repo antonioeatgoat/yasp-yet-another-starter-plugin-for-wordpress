@@ -25,16 +25,16 @@ if ( ! class_exists( 'Starter_Plugin' ) ) {
 	include_once dirname( __FILE__ ) . '/class-sp-core.php';
 }
 
-if ( ! function_exists( 'yasp_' ) ) {
+if ( ! function_exists( 'sp_instance' ) ) {
 	/**
 	 * Return the unique instance of the main class
 	 *
 	 * @return SP_Core
 	 */
-	function yasp_() {
+	function sp_instance() {
 		return SP_Core::instance();
 	}
 }
 
 // Init the main class
-yasp_();
+sp_instance();

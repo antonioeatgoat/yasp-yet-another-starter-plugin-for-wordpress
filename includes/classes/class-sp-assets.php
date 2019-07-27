@@ -50,13 +50,13 @@ class SP_Assets implements SP_Singleton_Interface {
 		// Styles
 		wp_enqueue_style(
 			'yasp',
-			yasp_()->plugin_url() . "/assets/css/yasp{$min_suffix}.css"
+			sp_instance()->plugin_url() . "/assets/css/yasp{$min_suffix}.css"
 		);
 
 		// Scripts
 		wp_enqueue_script(
 			'yasp',
-			yasp_()->plugin_url() . "/assets/js/yasp{$min_suffix}.js",
+			sp_instance()->plugin_url() . "/assets/js/yasp{$min_suffix}.js",
 			array( 'jquery' ),
 			SP_VERSION,
 			true
