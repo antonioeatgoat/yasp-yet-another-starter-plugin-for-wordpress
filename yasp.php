@@ -21,7 +21,7 @@ if ( ! defined( 'SP_PLUGIN_FILE' ) ) {
 }
 
 // Include the main class
-if ( ! class_exists( 'Starter_Plugin' ) ) {
+if ( ! class_exists( 'SP_Core' ) ) {
 	include_once dirname( __FILE__ ) . '/class-sp-core.php';
 }
 
