@@ -28,11 +28,10 @@ match case active.
 
  1. Search and replace all the **"SP_"**. 
  2. Search and replace all the **"sp_"**. 
- 3. Search and replace all the **"yasp_"**.
- 4. Search and replace the single **"YASP - Yet Another Starter Plugin for WordPress"**
- 5. Search and replace all the **"class-sp-"**.
- 6. Rename the classes files prefix **"class-sp-"**
- 7. Rename the file **"yasp.php"**
+ 3. Search and replace the single **"YASP - Yet Another Starter Plugin for WordPress"**
+ 4. Search and replace all the **"class-sp-"**.
+ 5. Rename the classes files prefix **"class-sp-"**
+ 6. Rename the file **"yasp.php"**
  7. Rename the assets files **"yasp.scss"** and **"yasp.js"**
 
 If you did everything correctly, now you should have your project fully renamed but still working exactly as before.
