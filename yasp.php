@@ -3,8 +3,12 @@
  *
  * Plugin Name: YASP - Yet Another Starter Plugin for WordPress
  * Description: A well-organized, easy-to-use, object-oriented boilerplate to create your next high-quality WordPress
- * Plugin efficiently. Version:     1.0.0 Plugin URI: Author:      Antonio Mangiacapra Author URI:
- * https://twitter.com/AntonioEatGoat Text Domain: yasp Domain Path: /languages/
+ * Plugin efficiently.
+ * Version: 1.1.0
+ * Plugin URI: https://github.com/antonioeatgoat/yasp-yet-another-starter-plugin-for-wordpress/
+ * Author: Antonio Mangiacapra
+ * Author URI:  https://github.com/antonioeatgoat/
+ * Text Domain: yasp Domain Path: /languages/
  *
  */
 
